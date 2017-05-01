@@ -17,3 +17,17 @@ def modular_linear_equation_solver(a, b, n): # solves for x -> ax = b mod n
         for i in range(0, d):
             solutions.append((x0 + i * int(n/d)) % n)
     return solutions
+
+
+def modular_exponentiation(a, b, n):
+    c = 0
+    d = 1
+   #print 'DEBUG: bin(b) = ' + str(bin(b))
+    for i in range(0, len(bin(b))-1)[::-1]:
+        c = c << 1
+        d = d * d % n
+        if (b >> i) & 1 == 1:
+            c = c + 1
+            d = d * a %n
+    return d
+
